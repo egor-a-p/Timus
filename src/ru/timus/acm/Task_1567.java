@@ -9,6 +9,7 @@ public class Task_1567 {
     public static void main(String[] args) throws IOException {
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
         String line = consoleReader.readLine();
+        consoleReader.close();
         int cost = 0;
 
         for (int i = 0; i < line.length(); i++)
