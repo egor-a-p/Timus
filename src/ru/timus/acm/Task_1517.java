@@ -1,15 +1,52 @@
 package ru.timus.acm;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.concurrent.*;
 
 public class Task_1517 {
 
-    private static class Task implements Callable<String>{
-        String line1,line2;
+    private static String getSpeech(int n, String line1, String line2) throws ExecutionException, InterruptedException {
+        Future<String>[] futures = new Future[n];
+        ExecutorService service = Executors.newCachedThreadPool();
+
+        for (int i = n; i > 0; i--)
+            futures[n - i] = service.submit(new Task(n, i, line1, line2));
+
+        for (Future<String> future : futures) {
+            String result = future.get();
+            if (result != null) {
+                service.shutdownNow();
+                return result;
+            }
+        }
+
+        return "";
+    }
+
+    private static String randomString(int len) {
+        final String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        SecureRandom rnd = new SecureRandom();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++)
+            sb.append(AB.charAt(rnd.nextInt(AB.length())));
+        return sb.toString();
+    }
+
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
+        /*BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(consoleReader.readLine());
+        String line1 = consoleReader.readLine();
+        String line2 = consoleReader.readLine();*/
+        int n = 1000;
+        String line1 = randomString(n);
+        String line2 = randomString(n);
+        System.out.println(getSpeech(n, line1, line2));
+    }
+
+    private static class Task implements Callable<String> {
+        String line1, line2;
         int n;
         int i;
 
@@ -23,7 +60,7 @@ public class Task_1517 {
         @Override
         public String call() throws Exception {
             HashSet<StringWrapper> set = new HashSet<>(26);
-            for (int j = 0; j + i <= n; j++){
+            for (int j = 0; j + i <= n; j++) {
                 StringWrapper sw1 = new StringWrapper(line1.substring(j, j + i), 1);
                 StringWrapper sw2 = new StringWrapper(line2.substring(j, j + i), 2);
                 if (!set.add(sw1))
@@ -34,32 +71,6 @@ public class Task_1517 {
             set.clear();
             return null;
         }
-    }
-
-    private static String getSpeech(int n, String line1, String line2) throws ExecutionException, InterruptedException {
-        Future<String>[] futures = new Future[n];
-        ExecutorService service = Executors.newCachedThreadPool();
-
-        for (int i = n; i > 0; i--)
-            futures[n - i] = service.submit(new Task(n, i, line1, line2));
-
-        for (Future<String> future : futures){
-            String result = future.get();
-            if (result != null){
-                service.shutdownNow();
-                return result;
-            }
-        }
-
-        return "";
-    }
-
-    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(consoleReader.readLine());
-        String line1 = consoleReader.readLine();
-        String line2 = consoleReader.readLine();
-        System.out.println(getSpeech(n, line1, line2));
     }
 
     private static class StringWrapper {
