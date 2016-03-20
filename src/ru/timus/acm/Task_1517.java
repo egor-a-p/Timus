@@ -1,18 +1,22 @@
 package ru.timus.acm;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.security.SecureRandom;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.*;
 
 public class Task_1517 {
 
     private static String getSpeech(int n, String line1, String line2) throws ExecutionException, InterruptedException {
-        Future<String>[] futures = new Future[n];
+        List<Future<String>> futures = new LinkedList<>();
         ExecutorService service = Executors.newCachedThreadPool();
 
         for (int i = n; i > 0; i--)
-            futures[n - i] = service.submit(new Task(n, i, line1, line2));
+            futures.add(service.submit(new Task(n, i, line1, line2)));
 
         for (Future<String> future : futures) {
             String result = future.get();
@@ -35,11 +39,11 @@ public class Task_1517 {
     }
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-        /*BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(consoleReader.readLine());
+        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+        /*int n = Integer.parseInt(consoleReader.readLine());
         String line1 = consoleReader.readLine();
         String line2 = consoleReader.readLine();*/
-        int n = 1000;
+        int n = 5000;
         String line1 = randomString(n);
         String line2 = randomString(n);
         System.out.println(getSpeech(n, line1, line2));
@@ -94,12 +98,14 @@ public class Task_1517 {
 
         @Override
         public boolean equals(Object obj) {
-            StringWrapper s = (StringWrapper) obj;
+            if (this == obj)
+                return true;
 
-            if (this.id == s.id)
-                return false;
-
-            return string.equals(s.string);
+            if (obj instanceof StringWrapper) {
+                StringWrapper s = (StringWrapper) obj;
+                return this.id != s.id && string.equals(s.string);
+            }
+            return false;
         }
     }
 }
