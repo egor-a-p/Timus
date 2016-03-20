@@ -9,6 +9,7 @@ public class Task_1012 {
 
     public static void main(String str[]) throws IOException {
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+
         int n = Integer.parseInt(consoleReader.readLine());
         int k = Integer.parseInt(consoleReader.readLine());
 
