@@ -10,6 +10,7 @@ public class Task_1457 {
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         int n = Integer.parseInt(consoleReader.readLine());
+
         String[] input = consoleReader.readLine().split(" ");
         consoleReader.close();
 
