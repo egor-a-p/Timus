@@ -35,6 +35,7 @@ public class Task_2014 {
                 currentRecord.setPurseAndCard(previousRecord.purse, previousRecord.card);
                 ledger.offerLast(currentRecord);
             } else {
+
                 Deque<Record> temp = new LinkedList<>();
 
                 while (!ledger.isEmpty() && ledger.peekLast().date.compareTo(currentRecord.date) > 0)
