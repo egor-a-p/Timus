@@ -24,28 +24,23 @@ public class Task_2014 {
 
     private static int addRecord(String line) throws ParseException {
         Record currentRecord = new Record(line);
+        currentRecord.setPurseAndCard(0, 0);
 
-        if (ledger.isEmpty()) {
-            currentRecord.setPurseAndCard(0, 0);
+        if (ledger.isEmpty())
             ledger.offerLast(currentRecord);
-            return currentRecord.card;
-        } else {
+        else {
             Record previousRecord = ledger.peekLast();
             if (previousRecord.date.compareTo(currentRecord.date) < 0) {
                 currentRecord.setPurseAndCard(previousRecord.purse, previousRecord.card);
                 ledger.offerLast(currentRecord);
             } else {
-
                 Deque<Record> temp = new LinkedList<>();
 
                 while (!ledger.isEmpty() && ledger.peekLast().date.compareTo(currentRecord.date) > 0)
                     temp.offerLast(ledger.pollLast());
 
-                if (!ledger.isEmpty()) {
-                    previousRecord = ledger.peekLast();
-                    currentRecord.setPurseAndCard(previousRecord.purse, previousRecord.card);
-                } else
-                    currentRecord.setPurseAndCard(0, 0);
+                if (!ledger.isEmpty())
+                    currentRecord.setPurseAndCard(ledger.peekLast().purse, ledger.peekLast().card);
 
                 ledger.offerLast(currentRecord);
 
@@ -56,9 +51,9 @@ public class Task_2014 {
                     ledger.offerLast(currentRecord);
                 }
             }
-
-            return ledger.peekLast().card;
         }
+
+        return ledger.peekLast().card;
     }
 
     private static class Record {
