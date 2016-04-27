@@ -1,1 +1,5 @@
-# acm.timus.ru solved tasks
+# Timus
+
+Мои решения задачек с [acm.timus.ru].
+
+[acm.timus.ru]:http://acm.timus.ru/
