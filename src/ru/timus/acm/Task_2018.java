@@ -9,6 +9,7 @@ import static java.lang.System.*;
  * Created by egor-a-p on 02.06.16.
  */
 public class Task_2018 {
+
     private static int mod(int x) {
         return x % 1000000007;
     }
