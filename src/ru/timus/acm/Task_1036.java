@@ -5,6 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 
+/*
+Необходимо посчитать количество «счастливых» билетов с заданной суммой цифр, среди тех, номер которых состоит из 2N разрядов.
+«Счастливым» является билет, у которого сумма первых N цифр равна сумме N последних цифр.
+Исходные данные
+В единственной строке через пробел даны два числа: первое — N (1 ≤ N ≤ 50); второе — сумма цифр интересующих нас билетов (неотрицательное число, не превосходящее 1000).
+Результат
+В качестве ответа необходимо вывести найденное число «счастливых» билетов.
+ */
+
 public class Task_1036 {
     public static void main(String[] args) throws IOException {
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));

@@ -4,6 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/*
+У маленького мальчика есть набор из N кубиков (5 ≤ N ≤ 500). Из этих кубиков можно сложить различные лестницы.
+Лестницы имеют ступени различного размера, следующие в порядке возрастания этого размера (обратите особое внимание на то, что лестница не может иметь две одинаковые ступени).
+Каждая лестница должна иметь минимум две ступени, и каждая ступень должна состоять минимум из одного кубика.
+Problem illustration
+Найдите число Q различных лестниц, которые маленький мальчик может построить ровно из N кубиков.
+Исходные данные
+Число N
+Результат
+Число Q
+ */
+
 public class Task_1017 {
     public static void main(String[] args) throws IOException {
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));

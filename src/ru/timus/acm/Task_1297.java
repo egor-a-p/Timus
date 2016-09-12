@@ -3,7 +3,12 @@ package ru.timus.acm;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+/*
+Исходные данные
+Содержит всего одну строчку (не длиннее 1000 символов), содержащую только буквы латинского алфавита (все пробелы и знаки препинания из строки Вася уже удалил).
+Результат
+Максимальная по длине подстрока, читающаяся одинаково в обоих направлениях. Если максимальных по длине подстрок больше одной, вывести самую левую из них.
+ */
 public class Task_1297 {
 
     public static void main(String[] args) throws IOException {

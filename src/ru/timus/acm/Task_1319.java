@@ -3,7 +3,13 @@ package ru.timus.acm;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+/*
+Исходные данные
+Целое число N (1 ≤ N ≤ 100) – размер таблички.
+Результат
+Табличка, помеченная циферками, как она будет стоять в мастерской.
+Номер один должен находиться в правом верхнем углу, далее ячейки нумеруются по диагоналям сверху вниз, последний номер (N*N) стоит в левом нижнем углу.
+ */
 public class Task_1319 {
 
     public static void main(String str[]) throws IOException {
